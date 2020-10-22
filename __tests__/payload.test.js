@@ -13,14 +13,22 @@ describe('payloadFilter', () => {
 })
 
 describe('listEligibleShows', () => {
-  it('should list filtered shows with specific fields', async () => {
+  it('should return a list of eligible shows with specific fields', async () => {
     const { payload } = exampleRequest;
     const requiredFields = ["image", "slug", "title"];
     
+    //Helper function to compare the required fields with the return object keys
+    function equivalentArrays(arr1, arr2) {
+      return arr1.length === arr2.length && arr1.every((entry, ind) => {
+        return entry === arr2[ind];
+      });
+    }
+
     const showsList = await listEligible(payload);
 
     const correctKeys = showsList.every(show => {
-      return Object.keys(show) == requiredFields;
+      const keys = Object.keys(show);
+      return equivalentArrays(keys, requiredFields);
     })
 
     expect(showsList.length).toBe(7);
