@@ -1,6 +1,6 @@
 class FilterEligibleShows {
-  execute(payload) {
-  
+  async execute(payload) {
+    return await payload.filter(show => show.drm && show.episodeCount > 0)
   }
 }
 
