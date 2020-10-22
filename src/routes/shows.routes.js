@@ -4,6 +4,6 @@ const showController = require('../controllers/ShowController.js')
 
 const showsRouter = Router();
 
-showsRouter.post('/', showController);
+showsRouter.post('/', showController.listEligible());
 
 module.exports = showsRouter;

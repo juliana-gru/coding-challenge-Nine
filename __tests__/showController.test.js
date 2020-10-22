@@ -25,8 +25,6 @@ describe('ShowController', () => {
     .send(invalidRequest);
 
     expect(response.status).toBe(400);
-    expect(response.error).toBe(`{
-      "error":"Could not decode request: JSON parsing failed"
-    }`) 
+    expect(response.text).toBe(`{"error":"Could not decode request: JSON parsing failed"}`) 
   })
-})
+});
