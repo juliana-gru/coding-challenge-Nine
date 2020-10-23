@@ -13,6 +13,7 @@ describe('ShowController', () => {
 
     const responseArray = response.body.response;
 
+    expect(response.headers["content-type"]).toContain("application/json");
     expect(response.status).toBe(200);
     expect(responseArray.length).toBe(7);
   })
@@ -24,7 +25,8 @@ describe('ShowController', () => {
     .post('/api/shows')
     .send(invalidRequest);
 
+    expect(response.headers["content-type"]).toContain("application/json");
     expect(response.status).toBe(400);
-    expect(response.text).toBe(`{"error":"Could not decode request: JSON parsing failed"}`) 
+    expect(response.text).toBe(`{"error":"Could not decode request: JSON parsing failed"}`); 
   })
 });
